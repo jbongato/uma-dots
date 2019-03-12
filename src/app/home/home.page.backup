@@ -1,0 +1,181 @@
+import { Component } from '@angular/core';
+import 'hammerjs';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+export class HomePage {
+
+  eventText = '';
+
+  //Trigger prop
+  playAnim;
+
+  //State & Prev (to preserve direction)
+  umaIndicatorState: Number = 1;
+  umaIndicatorStatePrev: Number = 1;
+
+  //Flags to replay loop
+  umaIndicatorNextLoop: Boolean = false;
+  umaIndicatorPrevLoop: Boolean = false;
+
+  //Past Here Should Be Changed Depending on Which Slide to Initiate With
+
+  //Maximum
+  umaIndicatorMax = 10;
+
+  //Designates which animation form to display
+  umaIndicatorForm: Number = 1;
+
+  /*
+  Relativity
+    firsttriad: state < 4
+    preloop: state = 4
+    loop: state > 4
+    postloop: state < max-1
+    lasttriad: state < max-2
+  */
+  umaIndicatorRelativity: String = 'firsttriad';
+
+  ngOnInit(){
+    setTimeout(()=>{
+      this.playAnim = true;
+    },1000);
+    
+  }
+
+  replay(){
+    this.playAnim = false;
+    setTimeout(()=>{
+      this.playAnim = true;
+    },1000);
+  }
+
+  onSwipe(evt) {
+    const x = Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? 'right' : 'left'):'';
+    const y = Math.abs(evt.deltaY) > 40 ? (evt.deltaY > 0 ? 'down' : 'up') : '';
+
+    if(Math.abs(evt.deltaX) > 40){
+
+      if(evt.deltaX > 0) {
+        this.umaIndicatorPrev();
+      } else {
+        this.umaIndicatorNext();
+      }
+
+    }
+
+    this.eventText += `${x} ${y}<br/>`;
+
+  }
+
+  umaIndicatorNext(){
+
+    //If state is less than max
+    if(this.umaIndicatorState < this.umaIndicatorMax){
+
+      //Reset Animation/Reveal state
+      this.playAnim = false;
+
+      //Assign state to prev state
+      this.umaIndicatorStatePrev = this.umaIndicatorState;
+
+      //Increment state
+      this.umaIndicatorState = Number(this.umaIndicatorState) + 1;
+
+      //Decide which form animation to display
+      if(this.umaIndicatorStatePrev === 1 && this.umaIndicatorState === 2){
+        this.umaIndicatorForm = 2;
+      } else if(this.umaIndicatorStatePrev === 2 && this.umaIndicatorState === 3){
+        this.umaIndicatorForm = 3;
+      } else if(this.umaIndicatorStatePrev === 3 && this.umaIndicatorState === 4){
+        this.umaIndicatorForm = 4;
+        this.umaIndicatorRelativity = "preloop";
+      } else if(this.umaIndicatorStatePrev === 4 && this.umaIndicatorState === 5){
+        this.umaIndicatorForm = 5;
+      } else if(this.umaIndicatorStatePrev >= 5 && (this.umaIndicatorState <= Number(this.umaIndicatorMax)-2)){ //Looper
+        if(this.umaIndicatorNextLoop === false){
+          this.umaIndicatorForm = 6;
+          this.umaIndicatorNextLoop = true;
+        } else {
+          this.umaIndicatorForm = 16;
+          this.umaIndicatorNextLoop = false;
+        }
+      } else if(this.umaIndicatorStatePrev === Number(this.umaIndicatorMax)-2){
+        this.umaIndicatorForm = 7;
+      } else if(this.umaIndicatorStatePrev === Number(this.umaIndicatorMax)-1){
+        this.umaIndicatorForm = 8;
+      }
+
+      //Play Animation/Reveal State
+      this.playAnim = true;
+
+    }
+    
+  }
+
+  umaIndicatorPrev(){
+
+    //If state is greater than 1
+    if(this.umaIndicatorState > 1){
+
+      //Reset Animation/Reveal state
+      this.playAnim = false;
+
+      //Assign state to prev state
+      this.umaIndicatorStatePrev = this.umaIndicatorState;
+
+      //Decrement state
+      this.umaIndicatorState = Number(this.umaIndicatorState) - 1;
+
+      //Decide which form animation to display
+      if(this.umaIndicatorStatePrev === Number(this.umaIndicatorMax)){
+        this.umaIndicatorForm = 9;
+      } else if(this.umaIndicatorStatePrev === Number(this.umaIndicatorMax)-1){
+        this.umaIndicatorForm = 10;
+      } else if(this.umaIndicatorStatePrev === Number(this.umaIndicatorMax)-2){
+        this.umaIndicatorForm = 11;
+      } else if(this.umaIndicatorStatePrev === Number(this.umaIndicatorMax)-3){
+        this.umaIndicatorForm = 12;
+      } else if((this.umaIndicatorStatePrev <= Number(this.umaIndicatorMax)-4) && this.umaIndicatorStatePrev > 4){ //Looper
+
+        if(this.umaIndicatorPrevLoop === false){
+          this.umaIndicatorForm = 13;
+          this.umaIndicatorPrevLoop = true;
+        } else {
+          this.umaIndicatorForm = 17;
+          this.umaIndicatorPrevLoop = false;
+        }
+
+      } else if(this.umaIndicatorStatePrev === 4 && this.umaIndicatorState === 3){
+        this.umaIndicatorForm = 24;
+      } else if(this.umaIndicatorStatePrev === 3 && this.umaIndicatorState === 2){
+        
+        if(this.umaIndicatorRelativity === "preloop"){
+          this.umaIndicatorForm = 14;
+        } else {
+          this.umaIndicatorForm = 19;
+        }
+        
+
+      } else if(this.umaIndicatorStatePrev === 2 && this.umaIndicatorState === 1){
+
+        if(this.umaIndicatorRelativity === "preloop"){
+          this.umaIndicatorForm = 15;
+        } else {
+          this.umaIndicatorForm = 18;
+        }
+        
+      }
+
+      //Play Animation/Reveal State
+      this.playAnim = true;
+
+    }
+  } 
+
+
+}
+

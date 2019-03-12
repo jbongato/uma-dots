@@ -1,1 +1,1117 @@
+ion-content {
+    --background: #080C10;
+}
 
+p, h3, h5 {
+    color: #fff;
+    // text-align: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+@mixin mdDot() {
+    width: var(--dot-reg);
+    height: var(--dot-reg);
+    border-radius: var(--dot-reg);
+    transform: translateY(0px);
+}
+
+@mixin smDot() {
+    width: var(--dot-sm);
+    height: var(--dot-sm);
+    border-radius: var(--dot-sm);
+    transform: translateY(0.5px);
+}
+
+@mixin xsDot() {
+    width: var(--dot-xs);
+    height: var(--dot-xs);
+    border-radius: var(--dot-xs);
+    transform: translateY(1px);
+}
+
+@mixin nullDot(){
+    height: 0px;
+    width: 0px;
+    margin-right: 0px;
+    border-radius: 0px;
+    transform: translateY(2px);
+}
+
+@mixin activeDot(){
+    background-color: #fff;
+}
+
+@mixin inactiveDot(){
+    background-color: #585C60;
+}
+
+.uma-indicator {
+    --dot-reg: 4px;
+    --dot-sm: 3px;
+    --dot-xs: 2px;
+    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+
+    .uma-indicator-dot {
+        @include mdDot();
+        @include inactiveDot();
+        margin-right: 6px;
+        transition: all 0.2s ease-out;
+        transform-origin: 50% 50%;
+
+        &:last-child {
+            margin-right: 0px;
+        }
+
+        &.hide {
+            @include nullDot();
+        }
+
+        &.sm {
+            @include smDot();
+        }
+
+        &.xs {
+            @include xsDot();
+        }
+
+        &.active {
+            @include activeDot();
+        }
+    }
+
+    .uma-indicator-form {
+        opacity: 0;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        position: absolute;
+        top: 0px;
+
+        &.show {
+            opacity: 1;
+        }
+
+    }
+
+    .uma-indicator-form1 {
+        .uma-indicator-dot:nth-of-type(1) {
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include xsDot();
+        }
+    }
+
+    .uma-indicator-form2 {
+
+        .uma-indicator-dot:nth-of-type(1) {
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include xsDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(1){
+                @include inactiveDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(2){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form3 {
+        .uma-indicator-dot:nth-of-type(2){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include xsDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(2){
+                @include inactiveDot();   
+            }
+            .uma-indicator-dot:nth-of-type(3){
+                @include activeDot();
+            }
+        }
+
+    }
+
+    .uma-indicator-form4 {
+
+        .uma-indicator-dot:nth-of-type(3){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include xsDot();
+            margin-right: 0px;
+        }
+
+        .uma-indicator-dot:nth-of-type(6){
+            @include nullDot();
+        }
+
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(1){
+                @include smDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(3){
+                @include inactiveDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(4){
+                @include mdDot();
+                @include activeDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(5){
+                @include smDot();
+                margin-right: 6px;
+            }
+
+            .uma-indicator-dot:nth-of-type(6){
+                @include xsDot();
+            }
+        }
+        
+    }
+
+    .uma-indicator-form5 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(3){
+            @include inactiveDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include mdDot();
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(6){
+            @include xsDot();
+            margin-right: 0px;
+        }
+
+        .uma-indicator-dot:nth-of-type(7){
+            @include nullDot();
+        }
+
+        &.reveal {
+
+            .uma-indicator-dot:nth-of-type(1){
+                @include xsDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(2){
+                @include smDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(5){
+                @include mdDot();
+                @include activeDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(6){
+                @include smDot();
+                margin-right: 6px;
+            }
+
+            .uma-indicator-dot:nth-of-type(7){
+                @include xsDot();
+            }
+
+        }
+    }
+
+    .uma-indicator-form6, .uma-indicator-form6b {
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include inactiveDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+            margin-right: 6px;
+        }
+
+        .uma-indicator-dot:nth-of-type(7){
+            @include xsDot();
+            margin-right: 0px;
+        }
+
+        .uma-indicator-dot:nth-of-type(8){
+            @include nullDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(1){
+                @include nullDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(2){
+                @include xsDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(3){
+                @include smDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(5){
+                @include inactiveDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(6){
+                @include mdDot();
+                @include activeDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(7){
+                @include smDot();
+                margin-right: 6px;
+            }
+            
+            .uma-indicator-dot:nth-of-type(8){
+                @include xsDot();
+            }
+        }
+    }
+
+    .uma-indicator-form7 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+        
+        .uma-indicator-dot:nth-of-type(7){
+            @include xsDot();
+            margin-right: 0px;
+        }
+
+        .uma-indicator-dot:nth-of-type(8){
+            @include nullDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(1){
+                @include nullDot();
+            }
+            .uma-indicator-dot:nth-of-type(2){
+                @include xsDot();
+            }
+            .uma-indicator-dot:nth-of-type(3){
+                @include smDot();
+            }
+            .uma-indicator-dot:nth-of-type(5){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(6){
+                @include activeDot();
+                @include mdDot();
+            }
+            .uma-indicator-dot:nth-of-type(7){
+                @include smDot();
+            }
+        }
+    }
+
+    .uma-indicator-form8 {
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(5){
+            @include activeDot();
+        }
+        .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(1){
+                @include nullDot();
+            }
+            .uma-indicator-dot:nth-of-type(2){
+                @include xsDot();
+            }
+            .uma-indicator-dot:nth-of-type(3){
+                @include smDot();
+            }
+            .uma-indicator-dot:nth-of-type(5){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(6){
+                @include activeDot();
+                @include mdDot();
+            }
+        }
+    }
+
+    .uma-indicator-form9 {
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(5){
+            @include activeDot();
+        }
+
+        &.reveal {
+
+            .uma-indicator-dot:nth-of-type(5){
+                @include inactiveDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(4){
+                @include activeDot();
+            }
+
+        }
+    }
+
+    .uma-indicator-form10 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(4){
+            @include activeDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(3){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form11 {
+        .uma-indicator-dot:nth-of-type(1){
+            @include nullDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(3){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(4){
+            @include activeDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(1){
+                @include xsDot();
+                margin-right: 6px;
+            }
+            .uma-indicator-dot:nth-of-type(2){
+                @include smDot();
+            }
+            .uma-indicator-dot:nth-of-type(3){
+                @include mdDot();
+                @include activeDot();
+            }
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(6){
+                @include smDot();
+            }
+            
+        }
+    }
+
+    .uma-indicator-form12 {
+        .uma-indicator-dot:nth-of-type(1){
+            @include nullDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(3){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(4){
+            @include activeDot();
+        }
+        .uma-indicator-dot:nth-of-type(7){
+            @include smDot();
+            margin-right: 0px;
+        }
+        
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(1){
+                @include xsDot();
+                margin-right: 6px;
+            }
+            .uma-indicator-dot:nth-of-type(2){
+                @include smDot();
+            }
+            .uma-indicator-dot:nth-of-type(3){
+                @include mdDot();
+                @include activeDot();
+            }
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(6){
+                @include smDot();
+            }
+            .uma-indicator-dot:nth-of-type(7){
+                @include xsDot();
+            }
+        }
+    }
+
+    .uma-indicator-form13, .uma-indicator-form13b {
+        .uma-indicator-dot:nth-of-type(1){
+            @include nullDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(2){
+            @include xsDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(3){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(7){
+            @include smDot();
+        }
+        
+        .uma-indicator-dot:nth-of-type(8){
+            @include xsDot();
+        }
+
+        &.reveal {
+
+            .uma-indicator-dot:nth-of-type(1){
+                @include xsDot();
+                margin-right: 6px;
+            }
+
+            .uma-indicator-dot:nth-of-type(2){
+                @include smDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(3){
+                @include mdDot();
+                @include activeDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(6){
+                @include smDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(7){
+                @include xsDot();
+                margin-right: 0px;
+            }
+
+            .uma-indicator-dot:nth-of-type(8){
+                @include nullDot();
+            }
+        }
+    }
+
+    .uma-indicator-form14 {
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(3){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include inactiveDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(7){
+            @include xsDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(1){
+                @include smDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(2) {
+                @include mdDot();
+                @include activeDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(3){
+                @include inactiveDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(5) {
+                @include smDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(6) {
+                @include xsDot();
+                margin-right: 0px;
+            }
+
+            .uma-indicator-dot:nth-of-type(7){
+                @include nullDot();
+            }
+        }
+    }
+
+    .uma-indicator-form15 {
+        .uma-indicator-dot:nth-of-type(1){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(2) {
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(3){
+            @include inactiveDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5) {
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(6) {
+            @include xsDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(1){
+                @include mdDot();
+                @include activeDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(2){
+                @include inactiveDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(4){
+                @include smDot();
+            }
+
+
+            .uma-indicator-dot:nth-of-type(5){
+                @include xsDot();
+                margin-right: 0px;
+            }
+
+            .uma-indicator-dot:nth-of-type(6){
+                @include nullDot();
+            }
+        }
+    }
+
+    .uma-indicator-form18 {
+        .uma-indicator-dot:nth-of-type(2){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include xsDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(2){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(1){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form19 {
+        .uma-indicator-dot:nth-of-type(3){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include xsDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(3){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(2){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form20 {
+        .uma-indicator-dot:nth-of-type(1), .uma-indicator-dot:nth-of-type(7){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2), .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(5){
+            @include activeDot();
+        }
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(5){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(4){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form21 {
+        .uma-indicator-dot:nth-of-type(1), .uma-indicator-dot:nth-of-type(7){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2), .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(4){
+            @include activeDot();
+        }
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(3){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form22 {
+        .uma-indicator-dot:nth-of-type(1), .uma-indicator-dot:nth-of-type(7){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2), .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(3){
+            @include activeDot();
+        }
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(3){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(4){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form23 {
+        .uma-indicator-dot:nth-of-type(1), .uma-indicator-dot:nth-of-type(7){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2), .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(4){
+            @include activeDot();
+        }
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(5){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form24 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(4){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(6){
+            @include xsDot();
+        }
+
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(3){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form25 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(3){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(6){
+            @include xsDot();
+        }
+
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(3){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(2){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form26 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(5){
+            @include activeDot();
+        }
+        .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(5){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(4){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form27 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(4){
+            @include activeDot();
+        }
+        .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(3){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form28 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(2){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(6){
+            @include xsDot();
+        }
+
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(2){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(3){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form29 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(3){
+            @include activeDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(5){
+            @include smDot();
+        }
+
+        .uma-indicator-dot:nth-of-type(6){
+            @include xsDot();
+        }
+
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(3){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(4){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form30 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(3){
+            @include activeDot();
+        }
+        .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(3){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(4){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form31 {
+
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(4){
+            @include activeDot();
+        }
+        .uma-indicator-dot:nth-of-type(6){
+            @include smDot();
+        }
+
+        &.reveal {
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+            .uma-indicator-dot:nth-of-type(5){
+                @include activeDot();
+            }
+        }
+    }
+
+    .uma-indicator-form32 {
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(3){
+            @include activeDot();
+        }
+
+        &.reveal {
+
+            .uma-indicator-dot:nth-of-type(3){
+                @include inactiveDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(4){
+                @include activeDot();
+            }
+
+        }
+    }
+
+    .uma-indicator-form33 {
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(4){
+            @include activeDot();
+        }
+
+        &.reveal {
+
+            .uma-indicator-dot:nth-of-type(4){
+                @include inactiveDot();
+            }
+
+            .uma-indicator-dot:nth-of-type(5){
+                @include activeDot();
+            }
+
+        }
+    }
+
+    .uma-indicator-form34 {
+        .uma-indicator-dot:nth-of-type(1){
+            @include xsDot();
+        }
+        .uma-indicator-dot:nth-of-type(2){
+            @include smDot();
+        }
+        .uma-indicator-dot:nth-of-type(5){
+            @include activeDot();
+        }
+
+        &.reveal {
+
+            // .uma-indicator-dot:nth-of-type(4){
+            //     @include inactiveDot();
+            // }
+
+            // .uma-indicator-dot:nth-of-type(5){
+            //     @include activeDot();
+            // }
+
+        }
+    }
+    
+}

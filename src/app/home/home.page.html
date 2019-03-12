@@ -1,12 +1,833 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content padding (swipe)="onSwipe($event)">
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="replay()">
+      <ion-fab-button>
+        <ion-icon name="arrow-dropleft"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+
+  <h3>Paginator Demo</h3> 
+  <br/>
+
+  <!-- Indicator Component -->
+  <div class="uma-indicator">
+
+    <!-- 1 -->
+    <div class="uma-indicator-form uma-indicator-form1" [class.show]="umaIndicatorForm === 1" [class.reveal]="umaIndicatorForm === 1 && playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 2: 1 to 2, first-triad -->
+    <div class="uma-indicator-form uma-indicator-form2" [class.show]="umaIndicatorForm === 2" [class.reveal]="umaIndicatorForm === 2 && playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 3: 2 to 3, first-triad -->
+    <div class="uma-indicator-form uma-indicator-form3" [class.show]="umaIndicatorForm === 3" [class.reveal]="umaIndicatorForm === 3 && playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 4: 3 to 4, first-triad to pre-looper -->
+    <div class="uma-indicator-form uma-indicator-form4" [class.show]="umaIndicatorForm === 4" [class.reveal]="umaIndicatorForm === 4 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 5: 4 to 5, pre-looper to looper -->
+    <div class="uma-indicator-form uma-indicator-form5" [class.show]="umaIndicatorForm === 5" [class.reveal]="umaIndicatorForm === 5 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 6 & 16: >5 && < Max-2, looper -->
+    <div class="uma-indicator-form uma-indicator-form6" [class.show]="umaIndicatorForm === 6" [class.reveal]="umaIndicatorForm === 6 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <div class="uma-indicator-form uma-indicator-form6b" [class.show]="umaIndicatorForm === 16" [class.reveal]="umaIndicatorForm === 16 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 7: Max-2 to Max-1, looper to post-looper -->
+    <div class="uma-indicator-form uma-indicator-form7" [class.show]="umaIndicatorForm === 7" [class.reveal]="umaIndicatorForm === 7 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 8: Max-1 to Max, post-looper to last-triad -->
+    <div class="uma-indicator-form uma-indicator-form8" [class.show]="umaIndicatorForm === 8" [class.reveal]="umaIndicatorForm === 8 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 9: Max to Max-1, last triad -->
+    <div class="uma-indicator-form uma-indicator-form9" [class.show]="umaIndicatorForm === 9" [class.reveal]="umaIndicatorForm === 9 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 10: Max-1 to Max-2, last triad -->
+    <div class="uma-indicator-form uma-indicator-form10" [class.show]="umaIndicatorForm === 10" [class.reveal]="umaIndicatorForm === 10 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 11: Max-2 to Max-3, last triad to post-looper -->
+    <div class="uma-indicator-form uma-indicator-form11" [class.show]="umaIndicatorForm === 11" [class.reveal]="umaIndicatorForm === 11 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 12: Max-3 to Max-4, post-looper to looper -->
+    <div class="uma-indicator-form uma-indicator-form12" [class.show]="umaIndicatorForm === 12" [class.reveal]="umaIndicatorForm === 12 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 13 & 17: >4 to 3, state is < Max-4, Looper -->
+    <div class="uma-indicator-form uma-indicator-form13" [class.show]="umaIndicatorForm === 13" [class.reveal]="umaIndicatorForm === 13 && playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+    <div class="uma-indicator-form uma-indicator-form13b" [class.show]="umaIndicatorForm === 17" [class.reveal]="umaIndicatorForm === 17 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+
+    <!-- 14: 3 to 2, looper to pre-looper -->
+    <div class="uma-indicator-form uma-indicator-form14" [class.show]="umaIndicatorForm === 14" [class.reveal]="umaIndicatorForm === 14 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 15: 2 to 1, pre-looper to first triad -->
+    <div class="uma-indicator-form uma-indicator-form15" [class.show]="umaIndicatorForm === 15" [class.reveal]="umaIndicatorForm === 15 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 18: 2 to 1, within first triad -->
+    <div class="uma-indicator-form uma-indicator-form18" [class.show]="umaIndicatorForm === 18" [class.reveal]="umaIndicatorForm === 18 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 19: 3 to 2, within first triad -->
+    <div class="uma-indicator-form uma-indicator-form19" [class.show]="umaIndicatorForm === 19" [class.reveal]="umaIndicatorForm === 19 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 20: 3 to 2, within looper -->
+    <div class="uma-indicator-form uma-indicator-form20" [class.show]="umaIndicatorForm === 20" [class.reveal]="umaIndicatorForm === 20 && playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 21: 2 to 1, within looper -->
+    <div class="uma-indicator-form uma-indicator-form21" [class.show]="umaIndicatorForm === 21" [class.reveal]="umaIndicatorForm === 21 && playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 22: 1 to 2, within looper -->
+    <div class="uma-indicator-form uma-indicator-form22" [class.show]="umaIndicatorForm === 22" [class.reveal]="umaIndicatorForm === 22 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 23: 2 to 3, within looper -->
+    <div class="uma-indicator-form uma-indicator-form23" [class.show]="umaIndicatorForm === 23" [class.reveal]="umaIndicatorForm === 23 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 28: 1 to 2, pre-looper (stemmed from 4) -->
+    <div class="uma-indicator-form uma-indicator-form28" [class.show]="umaIndicatorForm === 28" [class.reveal]="umaIndicatorForm === 28 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 29: 2 to 3, pre-looper (stemmed from 4) -->
+    <div class="uma-indicator-form uma-indicator-form29" [class.show]="umaIndicatorForm === 29" [class.reveal]="umaIndicatorForm === 29 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 30: 1 to 2, post-looper (stemmed from 7) -->
+    <div class="uma-indicator-form uma-indicator-form30" [class.show]="umaIndicatorForm === 30" [class.reveal]="umaIndicatorForm === 30 && playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 31: 2 to 3, post-looper (stemmed from 7) -->
+    <div class="uma-indicator-form uma-indicator-form31" [class.show]="umaIndicatorForm === 31" [class.reveal]="umaIndicatorForm === 31 && playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 24: 3 to 2, pre-looper (stemmed from 4) -->
+    <div class="uma-indicator-form uma-indicator-form24" [class.show]="umaIndicatorForm === 24" [class.reveal]="umaIndicatorForm === 24 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 25: 2 to 1, pre-looper (stemmed from 4) -->
+    <div class="uma-indicator-form uma-indicator-form25" [class.show]="umaIndicatorForm === 25" [class.reveal]="umaIndicatorForm === 25 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 26: 3 to 2, post-looper (stemmed from 7) -->
+    <div class="uma-indicator-form uma-indicator-form26" [class.show]="umaIndicatorForm === 26" [class.reveal]="umaIndicatorForm === 26 && playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 27: 2 to 1, post-looper (stemmed from 7) -->
+    <div class="uma-indicator-form uma-indicator-form27" [class.show]="umaIndicatorForm === 27" [class.reveal]="umaIndicatorForm === 27 && playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+    <!-- 32: 1 to 2, last triad -->
+    <div class="uma-indicator-form uma-indicator-form32" [class.show]="umaIndicatorForm === 32" [class.reveal]="umaIndicatorForm === 32 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  
+    <!-- 33: 2 to 3, last triad -->
+    <div class="uma-indicator-form uma-indicator-form33" [class.show]="umaIndicatorForm === 33" [class.reveal]="umaIndicatorForm === 33 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  
+    <!-- 34: 3 to 1, loop to beginning-->
+    <div class="uma-indicator-form uma-indicator-form34" [class.show]="umaIndicatorForm === 34" [class.reveal]="umaIndicatorForm === 34 && playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+
+  </div>
+
+  <br/>
+  <p>Current: {{ umaIndicatorState }}</p>
+  <p>Relativity: {{ umaIndicatorRelativity }}</p>
+  <p>Third: {{ umaIndicatorThird }}</p>
+
+  <h3>First Triad</h3>
+  <p>Static</p>
+  <!-- 1 -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form1 show" [class.reveal]="playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <p>Next</p>
+
+  <!-- 2: 1 to 2, first-triad -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form2 show" [class.reveal]="playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 3: 2 to 3, first triad -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form3 show" [class.reveal]="playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 4: 3 to 4, first triad to pre-looper -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form4 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <p>Prev</p>
+
+  <!-- 18: 2 to 1, within first triad -->
+  <div class="uma-indicator">
+      <div class="uma-indicator-form uma-indicator-form18 show" [class.reveal]="playAnim === true">
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+  </div>
+
+  <br/><br/>
+  <!-- 19: 3 to 2, within first triad -->
+  <div class="uma-indicator">
+      <div class="uma-indicator-form uma-indicator-form19 show" [class.reveal]="playAnim === true">
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+  </div>
+
+  <h3>Pre-Looper</h3>
+  <p>Next</p>
+
+  <!-- 28: 1 to 2, pre-looper (stemmed from 4) -->
+  <div class="uma-indicator">
+      <div class="uma-indicator-form uma-indicator-form28 show" [class.reveal]="playAnim === true">
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+  </div>
+
+  <br/><br/>
+  <!-- 29: 2 to 3, pre-looper (stemmed from 4) -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form29 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 5: 4 to 5, pre-looper to looper -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form5 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <p>Prev</p>
+
+  <!-- 24: 3 to 2, pre-looper (stemmed from 4) -->
+  <div class="uma-indicator">
+      <div class="uma-indicator-form uma-indicator-form24 show" [class.reveal]="playAnim === true">
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+  </div>
+
+  <br/><br/>
+  <!-- 25: 2 to 1, pre-looper (stemmed from 4) -->
+  <div class="uma-indicator">
+      <div class="uma-indicator-form uma-indicator-form25 show" [class.reveal]="playAnim === true">
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+  </div>
+
+  <br/><br/>
+  <!-- 15: 2 to 1, pre-looper to first triad -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form15 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <h3>Looper</h3>
+  <p>Next</p>
+
+  <!-- 22: 1 to 2, within looper -->
+  <div class="uma-indicator">
+      <div class="uma-indicator-form uma-indicator-form22 show" [class.reveal]="playAnim === true">
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+  </div>
+
+  <br/><br/>
+  <!-- 23: 2 to 3, within looper -->
+  <div class="uma-indicator">
+      <div class="uma-indicator-form uma-indicator-form23 show" [class.reveal]="playAnim === true">
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+  </div>
+
+  <br/><br/>
+  <!-- 6 & 16: >5 && < Max-2, looper -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form6 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 7: Max-2 to Max-1, looper to post-looper -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form7 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  
+
+  <p>Prev</p>
+
+  <!-- 20: 3 to 2, within looper -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form20 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+  </div>
+
+  <br/><br/>
+  <!-- 21: 2 to 1, within looper -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form21 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+  </div>
+
+  <br/><br/>
+  <!-- 13 & 17: >4 to 3, state is < Max-4, Looper -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form13 show" [class.reveal]="playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 14: 3 to 2, looper to pre-looper -->
+  <div class="uma-indicator">
+      <div class="uma-indicator-form uma-indicator-form14 show" [class.reveal]="playAnim === true">
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+          <div class="uma-indicator-dot">&nbsp;</div>
+      </div>
+    </div>
+
+  <h3>Post-Looper</h3>
+  <p>Next</p>
+
+  <!-- 30: 1 to 2, post-looper (stemmed from 7) -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form30 show" [class.reveal]="playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 31: 2 to 3, post-looper (stemmed from 7) -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form31 show" [class.reveal]="playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 8: Max-1 to Max, post-looper to last triad -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form8 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <p>Prev</p>
+
+  <!-- 26: 3 to 2, post-looper (stemmed from 7) -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form26 show" [class.reveal]="playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 27: 2 to 1, post-looper (stemmed from 7) -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form27 show" [class.reveal]="playAnim === true">
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+      <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 12: Max-3 to Max-4, post-looper to looper -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form12 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <h3>Last Triad</h3>
+  <p>Next</p>
+
+  <!-- 32: 1 to 2, last triad -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form32 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 33: 2 to 3, last triad -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form33 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 34: 3 to 1, loop to beginning-->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form34 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <p>Prev</p>
+
+  <!-- 9: Max to Max-1, last triad -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form9 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 10: Max-1 to Max-2, last triad -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form10 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+  <br/><br/>
+  <!-- 11: Max-2 to Max-3, last triad to post-looper -->
+  <div class="uma-indicator">
+    <div class="uma-indicator-form uma-indicator-form11 show" [class.reveal]="playAnim === true">
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+        <div class="uma-indicator-dot">&nbsp;</div>
+    </div>
+  </div>
+
+
+  <!---xxxxxxx -->
+
+  <br/><br/>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+ 
+  
+
+  
+
+  
+
+  
+
 </ion-content>
